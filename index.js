@@ -1,6 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import MovieRouter from './routes/ShowMovie.js';
+import bodyParser from 'body-parser';
 
 
 dotenv.config();
@@ -16,8 +18,9 @@ connection.once("open",()=>{
 })
 
 
+app.use(bodyParser.json())
 
-
+app.use("/api/movies", MovieRouter)
 
 app.listen(
     5002,

@@ -11,6 +11,7 @@ export function AddMovie(req,res){
             message: "Movie added..!"
         })
     }).catch((error)=>{
+        console.log(error)
         res.json({
             message: error
         })
@@ -21,7 +22,7 @@ export function AddMovie(req,res){
 export function getMovies(req,res){
     Movie.find({}).then((movie)=>{
         res.json(movie)
-        
+
     }).catch((error)=>{
         res.json({
             message:error
