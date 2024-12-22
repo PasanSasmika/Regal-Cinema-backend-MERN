@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import MovieRouter from './routes/ShowMovie.js';
 import bodyParser from 'body-parser';
+import foodRouter from './routes/FoodRouter.js';
 
 
 dotenv.config();
@@ -21,6 +22,8 @@ connection.once("open",()=>{
 app.use(bodyParser.json())
 
 app.use("/api/movies", MovieRouter)
+app.use("/api/foods", foodRouter)
+
 
 app.listen(
     5002,
