@@ -22,7 +22,7 @@ export function AddCommingMovie(req,res){
 
 export function getCommingMovie(req,res){
 
-    Movie.find({}).then((movie)=>{
+    UpcommingMovie.find({}).then((movie)=>{
         res.json(movie)
     
     }).catch((error)=>{
