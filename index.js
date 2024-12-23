@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import MovieRouter from './routes/ShowMovie.js';
 import bodyParser from 'body-parser';
 import foodRouter from './routes/FoodRouter.js';
+import UserRouter from './routes/UserRouter.js';
 
 
 dotenv.config();
@@ -23,6 +24,8 @@ app.use(bodyParser.json())
 
 app.use("/api/movies", MovieRouter)
 app.use("/api/foods", foodRouter)
+app.use("/api/users", UserRouter)
+
 
 
 app.listen(
