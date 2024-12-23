@@ -12,6 +12,7 @@ export function createUser(req,res){
     if(newUserData.type == "admin"){
 
         if(req.user==null){
+        
             res.json({
                 message: "You are not logged in. Please login as admin to create admin account..! "
             })
@@ -23,6 +24,8 @@ export function createUser(req,res){
             res.json({
                 message: "You are not an admin.. please login as an admin"
             })
+
+            return
         }
     }
 
@@ -43,7 +46,7 @@ export function createUser(req,res){
 }
 
 
-export default function loginUser(req,res){
+export  function loginUser(req,res){
 
     User.find({email: req.body.email}).then(
         (users)=>{
@@ -80,3 +83,5 @@ export default function loginUser(req,res){
         }
     )
 }
+
+

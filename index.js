@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import jwt from 'jsonwebtoken';
 import MovieRouter from './routes/ShowMovie.js';
 import bodyParser from 'body-parser';
 import foodRouter from './routes/FoodRouter.js';
@@ -21,6 +22,22 @@ connection.once("open",()=>{
 
 
 app.use(bodyParser.json())
+
+app.use(
+  (req,res,next)=>{
+
+    const token = (req.header("Authorization"))?.replace("Bearer ", "")
+
+    if(token != null){
+      jwt.verify(token, process.env.SECRET, (error, decoded)=>{
+        if(!error){
+          req.user = decoded
+        }
+      })
+    }
+    next()
+  }
+)
 
 app.use("/api/movies", MovieRouter)
 app.use("/api/foods", foodRouter)
