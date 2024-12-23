@@ -4,6 +4,15 @@ import UpcommingMovie from "../models/UpcommingMovie.js"
 
 export function AddCommingMovie(req,res){
 
+    if(!isAdmin(req)){
+    
+            res.json({
+                message: "Please log in as an admin to add movies..!"
+            })
+    
+            return
+        }
+
     const newUpMovieData = req.body
 
     const movie = new UpcommingMovie (newUpMovieData)

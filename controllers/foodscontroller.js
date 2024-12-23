@@ -1,7 +1,17 @@
 import foods from "../models/foodModel.js"
+import { isAdmin } from "./usercontroller.js"
 
 
 export function AddFood(req,res){
+
+    if(!isAdmin(req)){
+    
+            res.json({
+                message: "Please log in as an admin to add foods..!"
+            })
+    
+            return
+        }
 
     const newFoodData = req.body
 

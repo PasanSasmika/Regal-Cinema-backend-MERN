@@ -1,6 +1,16 @@
 import Movie from "../models/showingMovie.js";
+import { isAdmin } from "./usercontroller.js";
 
 export function AddMovie(req,res){
+
+    if(!isAdmin(req)){
+
+        res.json({
+            message: "Please log in as an admin to add movies..!"
+        })
+
+        return
+    }
 
     const  newMovieData = req.body
 
